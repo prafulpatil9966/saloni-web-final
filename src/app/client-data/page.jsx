@@ -132,7 +132,7 @@ const ClientDataDisplay = () => {
             dateFormat="dd MMM yyyy"
             isClearable
             placeholderText="Select a date"
-            className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+            className="px-4 py-3 rounded-2xl shadow-md border border-gray-300 focus:ring-2 focus:ring-blue-500 text-gray-700 placeholder:text-gray-400 transition duration-200"
           />
         </div>
 
@@ -296,13 +296,13 @@ const ClientDataDisplay = () => {
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => handleEdit(client)}
-                    className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+                    className="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(client._id)}
-                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+                    className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition"
                   >
                     Delete
                   </button>
