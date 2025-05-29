@@ -66,7 +66,7 @@ const ClientDataDisplay = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`https://saloni-web-backend.onrender.com/api/clients${editingId}`, formData);
+      await axios.put(`https://saloni-web-backend.onrender.com/api/clients/${editingId}`, formData);
       setEditingId(null);
       fetchClients();
     } catch (error) {
@@ -80,7 +80,7 @@ const ClientDataDisplay = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://saloni-web-backend.onrender.com/api/clients${id}`);
+      await axios.delete(`https://saloni-web-backend.onrender.com/api/clients/${id}`);
       fetchClients();
     } catch (error) {
       console.error("Error deleting client:", error);

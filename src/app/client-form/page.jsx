@@ -51,7 +51,7 @@ const ClientBusinessForm = () => {
     console.log("Submitting:", dataToSend);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/clients', dataToSend);
+      const response = await axios.post('https://saloni-web-backend.onrender.com/api/clients', dataToSend);
       alert("Data submitted successfully!");
       setFormData({
         clientName: '',
