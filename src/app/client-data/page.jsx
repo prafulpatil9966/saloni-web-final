@@ -20,7 +20,7 @@ const ClientDataDisplay = () => {
 
   const fetchClients = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/clients');
+      const res = await axios.get('https://saloni-web-backend.onrender.com/api/clients');
       setClients(res.data);
       console.log(res.data);
     } catch (error) {
@@ -66,7 +66,7 @@ const ClientDataDisplay = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/clients/${editingId}`, formData);
+      await axios.put(`https://saloni-web-backend.onrender.com/api/clients${editingId}`, formData);
       setEditingId(null);
       fetchClients();
     } catch (error) {
@@ -80,12 +80,17 @@ const ClientDataDisplay = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/clients/${id}`);
+      await axios.delete(`https://saloni-web-backend.onrender.com/api/clients${id}`);
       fetchClients();
     } catch (error) {
       console.error("Error deleting client:", error);
       alert("Failed to delete client. Please try again.");
     }
+  };
+
+  const getCreatedAtFromObjectId = (objectId) => {
+    const timestamp = parseInt(objectId.substring(0, 8), 16) * 1000;
+    return new Date(timestamp).toLocaleString(); // or .toLocaleDateString()
   };
 
   return (
@@ -188,6 +193,9 @@ const ClientDataDisplay = () => {
             </>
           ) : (
             <>
+              <p className="text-sm text-gray-600">
+                <strong>Created At:</strong> {getCreatedAtFromObjectId(client._id)}
+              </p>
               <h2 className="text-lg font-semibold text-gray-800 mb-2">
                 <strong>Client Name:</strong> {client.clientName}
               </h2>
@@ -198,13 +206,19 @@ const ClientDataDisplay = () => {
               <div className="mb-2">
                 <strong className='text-gray-600'>Work Done:</strong>
                 {client.workItems && client.workItems.length > 0 ? (
-                  <ul className="list-disc list-inside">
-                    {client.workItems.map((item, idx) => (
-                      <li className='text-gray-600' key={idx}>
-                        {item.workType} - ₹{item.price}
-                      </li>
-                    ))}
-                  </ul>
+                  <>
+                    <ul className="list-disc list-inside">
+                      {client.workItems.map((item, idx) => (
+                        <li className='text-gray-600' key={idx}>
+                          {item.workType} - ₹{item.price}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-2 font-semibold text-gray-700">
+                      Total Amount: ₹
+                      {client.workItems.reduce((total, item) => total + Number(item.price), 0)}
+                    </p>
+                  </>
                 ) : (
                   <p>No work items available</p>
                 )}
