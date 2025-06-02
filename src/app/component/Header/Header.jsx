@@ -5,9 +5,13 @@ const Header = () => {
     <header className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-blue-600">
+        <div className="h-[70px] sm:h-[60px] flex items-center">
           <a href="/">
-            MyLogo
+            <img
+              className="h-full max-h-[70px] sm:max-h-[60px] w-auto object-contain"
+              src="/header-logo-new.png"
+              alt="Header Logo"
+            />
           </a>
         </div>
 
